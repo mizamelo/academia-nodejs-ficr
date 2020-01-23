@@ -1,3 +1,3 @@
 ## Academia nodejs FICR
 
-Projeto em evolução
+Projeto em evolução node.js
