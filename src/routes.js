@@ -1,13 +1,11 @@
 const { Router } = require('express')
 
-// Controllers
-const ProductsController = require('./controllers/ProductsController')
+//Controllers
+const userController = require('./app/controller/UserController')
+const routes = Router()
 
-const app = Router()
+routes.post('/users', userController.create)
+routes.get('/users', userController.get)
 
-app.post('/products', ProductsController.create)
-app.get('/products', ProductsController.read)
-app.put('/products/:id', ProductsController.update)
-app.delete('/products/:id', ProductsController.delete)
 
-module.exports = app
+module.exports = routes
