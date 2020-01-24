@@ -15,20 +15,16 @@ class AuthController{
     
         try {
             const [, token] = authorization.split(' ')
-            
             validator.isJWT(token)
-    
-            const promise = promisify(jwt.decode)
-    
+            const promise = promisify(jwt.verify)
             const { _id: id } = await promise(token, process.env.SECRETORKEY)
-    
             req.user = {
                 id
             }
             return next()
     
         } catch (error) {
-            return res.send(401)
+            return res.sendStatus(401)
         }
     
     

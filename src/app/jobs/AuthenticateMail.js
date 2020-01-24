@@ -1,6 +1,6 @@
 const Mail = require('../lib/Mail')
 
-class Registrationmail{
+class AuthenticateMail{
     constructor(){
         this.key = "Registrationmail"
     }
@@ -15,4 +15,4 @@ class Registrationmail{
     }
 }
 
-module.exports = new Registrationmail()
+module.exports = new AuthenticateMail()
