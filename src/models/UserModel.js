@@ -5,17 +5,17 @@ const bcrypt = require('bcrypt')
 const UserModel = new Schema({
   name: {
     type: String,
-    require: true
+    required: true
   },
   email: {
     type: String,
     unique: true,
-    require: true,
+    required: true,
     lowercase: true
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     select: false
   }
 })
