@@ -6,7 +6,8 @@ class AuthController {
     const { email } = req.body
 
     try {
-      if (await User.findOne({ email })) return res.send({ error: 'Email já existe' })
+      if (await User.findOne({ email })) 
+        return res.send({ error: 'Email já existe' })
 
       const user = User.create(req.body)
 
