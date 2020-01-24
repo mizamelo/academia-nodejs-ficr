@@ -9,7 +9,7 @@ class AuthController {
       if (await User.findOne({ email })) 
         return res.send({ error: 'Email já existe' })
 
-      const user = User.create(req.body)
+      const user = await User.create(req.body)
 
       const generateToken = promisify(User.generateToken)
       const token = await generateToken(user.id)
@@ -19,7 +19,7 @@ class AuthController {
         token
       })
     } catch (error) {
-      return res.send({ error })
+      console.error("erro ao cadastrar ", error);
     }
    
   }
