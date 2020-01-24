@@ -5,14 +5,30 @@ const mongoose = require('mongoose')
 
 describe('Validate', () => {
 
-    test(('validator'), async () => {
+    beforeAll( async () => {
+        await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true
+        })
+    })
+
+    afterAll( async () => {
+        await mongoose.connection.close()
+    })
+
+    beforeEach( async () => {
+        await UserModel.deleteMany()
+    })
+
+    it(('validator'), async () => {
         const user = await UserModel.create({
             name: "francisco",
-            email: "franc1sc15666455956@gmail.com",
-            password: "123324"
+            email: "franc1sc1566@gmail.com",
+            password: "banana123"
         })
-
-        expect("francisco").toEqual(user.name)
+        expect(user.name).toEqual("francisco")
 
     })
+
 })

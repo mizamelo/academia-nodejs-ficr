@@ -3,19 +3,15 @@ require('dotenv').config({
 })
 
 const express = require('express')
-const mongoose = require('mongoose')
 const cors = require('cors')
 const compression = require('compression')
 const helmet = require('helmet')
-
-const { url } = require('./config/database')
 
 class AppController{
     constructor(){
         this.app = express()
         this.middlewares()
         this.routes()
-        this.database()
     }
 
     middlewares(){
@@ -26,13 +22,6 @@ class AppController{
     }
     routes(){
         this.app.use(require('./routes.js'))
-    }
-    async database(){
-        await mongoose.connect(url, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true
-        })
     }
 }
 

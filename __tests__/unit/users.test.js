@@ -1,5 +1,4 @@
 const app = require('../../src/app')
-const request = require('supertest')(app)
 
 describe('Validate', () => {
 

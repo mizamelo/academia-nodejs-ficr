@@ -24,6 +24,7 @@ const UserSchema = new Schema({
 })
 
 UserSchema.pre('save',async function(next) {
+    if (!this.isModified("password")) next();
     this.password = await bcrypt.hash(this.password, 10)
     next()
 })
@@ -34,7 +35,7 @@ UserSchema.methods.isPassword = async function(password) {
 
 UserSchema.methods.genToken = async function() {
     const promise = promisify(jwt.sign)
-    return await promise({_id: this._id}, process.env.SECRETORKEY, {
+    return await promise({_id: this._id}, process.env.SECRET_KEY, {
         expiresIn: '3h'
     })
 }
